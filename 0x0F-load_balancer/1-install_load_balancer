@@ -4,15 +4,6 @@ sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:vbernat/haproxy-1.8
 sudo apt-get -y update
 sudo apt-get install -y haproxy
-echo "ENABLED=1" >> /etc/default/haproxy
-echo "
-   listen load_balancer
-   bind *:80
-   mode http
-   balance roundrobin
-   option httpclose
-   option forwardfor
-   server 35-web-01 34.75.10.160:80 check
-   server 35-web-01 35.231.86.187:80 check
-" >> /etc/haproxy/haproxy.cfg
+sudo sed -i '13i\ENABLED=1' /etc/default/haproxy
+sudo sed -i -e '$a\listen http-in\n\tbind :80\n\tbalance roundrobin\n\tserver 11149-web-01 44.210.105.150 check\n\tserver 11149-web-02 3.238.104.46 check\n' /etc/haproxy/haproxy.cfg
 sudo service haproxy start
