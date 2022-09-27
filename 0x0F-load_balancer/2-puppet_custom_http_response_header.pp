@@ -4,8 +4,9 @@ package { 'nginx':
   ensure     => 'installed',
 }
 
-file { '/etc/nginx/nginx.conf':
-  content => "add_header X-Served-By ${HOSTNAME};",
+exec {'http_response_header':
+  command  => 'sed -i "25i\	add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default',
+  provider => 'shell'
 }
 
 service { 'nginx':
