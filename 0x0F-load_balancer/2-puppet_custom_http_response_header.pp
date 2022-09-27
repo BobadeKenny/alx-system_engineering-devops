@@ -1,7 +1,12 @@
 # Setup nginx server
 
+exec { 'apt update':
+        command => '/usr/bin/apt-get update',
+}
+
 package { 'nginx':
-  ensure     => 'installed',
+  ensure  => 'installed',
+  require => Exec['apt update']
 }
 
 exec {'http_response_header':
