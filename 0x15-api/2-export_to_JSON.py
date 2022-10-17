@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""export api data to json"""
+"""export api data to json
+for a given employee ID, returns
+information about his/her TODO list progress.
+"""
 import json
 import requests
 import sys
