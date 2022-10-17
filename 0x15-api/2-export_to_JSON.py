@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""export to json"""
+"""export api data to json"""
 import requests
 import sys
 import json
